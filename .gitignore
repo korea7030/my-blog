@@ -1,3 +1,4 @@
 blog.env
 web/node_modules
-.idea/*
+.idea/workspace.xml
+web/.nuxt
