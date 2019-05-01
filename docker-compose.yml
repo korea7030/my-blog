@@ -52,6 +52,7 @@ services: # 서비스 정의
     links:
       - web
   frontend:
+    restart: always
     build:
       context: ./
       dockerfile: config/frontend/Dockerfile
