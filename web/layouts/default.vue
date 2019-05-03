@@ -1,8 +1,9 @@
 <template>
-  <div class="container">
-
+  <div>
+    <nuxt />
   </div>
 </template>
 
 <style>
+
 </style>

@@ -14,7 +14,9 @@ export default {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'},
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'},
     ]
   },
 
@@ -27,8 +29,9 @@ export default {
   ** Global CSS
   */
   css: [
-    '~assets/css/main.css',
-    '~assets/vendor/fontawesome-free/css/all.css'
+    '~assets/vendor/bootstrap/css/bootstrap.css',
+    '~assets/vendor/fontawesome-free/css/all.css',
+    '~assets/css/main.css'
   ],
 
   /*
