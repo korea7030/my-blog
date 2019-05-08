@@ -23,6 +23,7 @@ class PostCategory(AbstractCreateUpdateModel):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     category_name = models.CharField(max_length=120)
     category_desc = models.CharField(max_length=1000)
+    category_link = models.CharField(max_length=100)
 
     class Meta:
         db_table = 'post_category'

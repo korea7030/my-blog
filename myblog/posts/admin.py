@@ -3,7 +3,7 @@ from posts.models import PostCategory, Post
 
 
 class PostCategoryAdmin(admin.ModelAdmin):
-    list_display = ['category_name', 'category_desc', 'author']
+    list_display = ['category_name', 'category_desc', 'author', 'category_link']
 
 
 class PostAdmin(admin.ModelAdmin):

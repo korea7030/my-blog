@@ -14,7 +14,7 @@ echo "Starting $NAME as `whoami`"
 # Activate the virtual environment
 cd $DJANGODIR
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
-#export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+python manage.py collectstatic --noinput
 
 # Create the run directory if it doesn't exist
 RUNDIR=$(dirname $SOCKFILE)

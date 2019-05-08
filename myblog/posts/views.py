@@ -1,8 +1,12 @@
 from rest_framework import generics
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .models import PostCategory, Post
-from .serializers import PostCategorySerializer, PostSerializer, PostDetailSerializer
+from .serializers import (CategorySerializer,
+                          PostCategorySerializer,
+                          PostSerializer,
+                          PostDetailSerializer)
 
 
 # Create your views here.
@@ -11,7 +15,8 @@ class PostCategoryList(generics.ListAPIView):
     category list view
     """
     queryset = PostCategory.objects.all()
-    serializer_class = PostCategorySerializer
+    serializer_class = CategorySerializer
+    permission_classes = (AllowAny,)
 
 
 class PostList(generics.ListAPIView):
@@ -22,6 +27,7 @@ class PostList(generics.ListAPIView):
     """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = (AllowAny,)
 
     def get_serializer(self, *args, **kwargs):
         """
@@ -48,6 +54,7 @@ class PostDetail(generics.RetrieveAPIView):
     lookup_field = "id"
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
+    permission_classes = (AllowAny,)
 
     def get_serializer(self, *args, **kwargs):
         """

@@ -2,6 +2,16 @@ from rest_framework import serializers
 from .models import PostCategory, Post
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    """
+    category list
+    """
+
+    class Meta:
+        model = PostCategory
+        fields = ('id', 'category_name', 'category_desc', 'category_link')
+
+
 class PostCategorySerializer(serializers.ModelSerializer):
     """
     blog category list

@@ -1,4 +1,8 @@
 blog.env
 web/node_modules
-.idea/workspace.xml
+.idea/*
 web/.nuxt
+venv/*
+myblog/*/__pycache__/*
+static_cdn/*
+myblog/*/migrations/*

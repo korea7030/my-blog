@@ -81,11 +81,11 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env_variable['NAME'],
-        'USER': env_variable['USER'],
-        'PASSWORD': env_variable['PASSWORD'],
-        'HOST': env_variable['HOST'],
-        'PORT': env_variable['PORT'],
+        'NAME': env_variable['DATABASE_NAME'],
+        'USER': env_variable['DATABASE_USER'],
+        'PASSWORD': env_variable['DATABASE_PASSWORD'],
+        'HOST': env_variable['DATABASE_HOST'],
+        'PORT': env_variable['DATABASE_PORT'],
     }
 }
 
