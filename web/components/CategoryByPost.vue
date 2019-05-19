@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
-      <div v-for="post in PostList" :key="post.id" class="col-lg-8 col-md-10 mx-auto">
+      <div v-for="post in CategoryByPostList" :key="post.id" class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
-          <nuxt-link :to="{name: 'category-cid-post-id', params: {cid: post.category, id: post.id}}">
+          <nuxt-link :to="{name: 'category-cid-post-id', params: {cid: categoryId, id: post.id}}">
             <h2 class="post-title">
               {{ post.title }}
             </h2>
@@ -31,18 +31,18 @@
   export default {
     data() {
       return {
-        PostList: null
+        categoryId: this.$route.params.cid,
+        CategoryByPostList: null
       }
     },
     created() {
-      this.$axios.get('blog/posts/').then((resp) => {
+      const categoryByPostUrl = 'blog/category/1'.replace('1', this.$route.params.cid)
+      this.$axios.get(categoryByPostUrl).then((resp) => {
         if (resp.status === 200) {
-          this.PostList = resp.data
+          this.CategoryByPostList = resp.data
         } else {
           console.log('1')
         }
-      }).catch((err) => {
-        console.log(err)
       })
     }
   }

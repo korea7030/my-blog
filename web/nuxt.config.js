@@ -1,5 +1,7 @@
 import pkg from './package'
 
+const baseURL = (process.env.NODE_ENV !== 'production') ? 'http://localhost:8000/' : '/'
+
 export default {
   mode: 'universal',
 
@@ -39,6 +41,13 @@ export default {
   */
   plugins: [],
 
+  /*
+  ** Axios module configuration
+  */
+  axios: {
+    baseURL: baseURL,
+    proxyHeaders: false
+  },
   /*
   ** Nuxt.js modules
   */

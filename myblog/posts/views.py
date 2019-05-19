@@ -1,11 +1,10 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
 
 from .models import PostCategory, Post
 from .serializers import (CategorySerializer,
-                          PostCategorySerializer,
                           PostSerializer,
+                          PostAllSerializer,
                           PostDetailSerializer)
 
 
@@ -16,6 +15,12 @@ class PostCategoryList(generics.ListAPIView):
     """
     queryset = PostCategory.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = (AllowAny,)
+
+
+class PostAllList(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostAllSerializer
     permission_classes = (AllowAny,)
 
 

@@ -18,34 +18,46 @@
         <i class="fas fa-bars" />
       </button>
       <div id="navbarResponsive" class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">
-              About
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="post.html">
-              Sample Post
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">
-              Contact
-            </a>
-          </li>
-        </ul>
+        <b-nav pills class="navbar-nav ml-auto">
+          <b-nav-item active class="nav-item">
+            Active
+          </b-nav-item>
+          <b-nav-item class="nav-item">
+            Link
+          </b-nav-item>
+          <b-nav-item-dropdown
+            id="my-nav-dropdown"
+            text="Dropdown"
+            toggle-class="nav-link-custom"
+            right
+          >
+            <b-dropdown-item v-for="category in categoryList" :key="category.id">
+              <nuxt-link :to="{name: 'category-cid-post', params: {cid: category.id}}">{{ category.category_name }}</nuxt-link>
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-nav>
       </div>
     </div>
   </nav>
 </template>
 <script>
   export default {
+    data() {
+      return {
+        categoryList: null
+      }
+    },
+    created() {
+      this.$axios.get('blog/').then((resp) => {
+        if (resp.status === 200) {
+          this.categoryList = resp.data
+        } else {
+          console.log('1')
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
 
   }
 </script>
