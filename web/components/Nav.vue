@@ -32,7 +32,9 @@
             right
           >
             <b-dropdown-item v-for="category in categoryList" :key="category.id">
-              <nuxt-link :to="{name: 'category-cid-post', params: {cid: category.id}}">{{ category.category_name }}</nuxt-link>
+              <nuxt-link :to="{name: 'category-cid-post', params: {cid: category.id}}">
+                {{ category.category_name }}
+              </nuxt-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-nav>

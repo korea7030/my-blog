@@ -31,13 +31,22 @@
   export default {
     data() {
       return {
-        PostList: null
+        PostList: null,
+        links: {
+          previous: null,
+          next: null,
+          count: null,
+          start_index: null,
+          end_index: null,
+          cur_page: null
+        }
       }
     },
     created() {
       this.$axios.get('blog/posts/').then((resp) => {
         if (resp.status === 200) {
-          this.PostList = resp.data
+          this.PostList = resp.data.results
+          this.links = resp.data.links
         } else {
           console.log('1')
         }
