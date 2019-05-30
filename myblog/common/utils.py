@@ -21,7 +21,8 @@ class CustomPagination(pagination.PageNumberPagination):
             'start_index': None,
             'end_index': None,
             'count': None,
-            'cur_page': None
+            'cur_page': None,
+            'per_page': None,
         }
 
         if self.get_next_link():
@@ -34,6 +35,7 @@ class CustomPagination(pagination.PageNumberPagination):
         page_dict['end_index'] = self.page.end_index()
         page_dict['count'] = self.page.paginator.count
         page_dict['cur_page'] = self.page.number
+        page_dict['per_page'] = 1
 
         return Response({
             'links': page_dict,

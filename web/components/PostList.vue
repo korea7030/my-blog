@@ -19,18 +19,23 @@
         <hr>
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">
-            Older Posts &rarr;
-          </a>
+          <Pagination :pageLink="links" @prev="getPostList(links.previous)" @next="getPostList(links.next)">
+          </Pagination>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import Pagination from '~/components/Pagination'
+
   export default {
+    components: {
+      Pagination
+    },
     data() {
       return {
+        querypage: 1,
         PostList: null,
         links: {
           previous: null,
@@ -38,21 +43,28 @@
           count: null,
           start_index: null,
           end_index: null,
-          cur_page: null
+          cur_page: null,
+          per_page: null
         }
       }
     },
     created() {
-      this.$axios.get('blog/posts/').then((resp) => {
-        if (resp.status === 200) {
-          this.PostList = resp.data.results
-          this.links = resp.data.links
-        } else {
-          console.log('1')
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
+      this.getPostList(this.querypage)
+    },
+    methods: {
+      getPostList(page) {
+        this.$axios.get('blog/posts/',
+                        { params: { page: page }
+                        }).then((resp) => {
+          if (resp.status === 200) {
+            this.PostList = resp.data.results
+            this.links = resp.data.links
+            this.querypage = page
+          } else {
+            console.log('1')
+          }
+        })
+      }
     }
   }
 </script>
