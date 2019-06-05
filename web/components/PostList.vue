@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div v-for="post in PostList" :key="post.id" class="col-lg-8 col-md-10 mx-auto">
+      <div v-for="post in PostList" id="my-table" :key="post.id" class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
           <nuxt-link :to="{name: 'category-cid-post-id', params: {cid: post.category, id: post.id}}">
             <h2 class="post-title">
@@ -17,12 +17,12 @@
           </p>
         </div>
         <hr>
-        <!-- Pager -->
-        <div class="clearfix">
-          <Pagination :pageLink="links" @prev="getPostList(links.previous)" @next="getPostList(links.next)">
-          </Pagination>
-        </div>
       </div>
+    </div>
+    <!-- Pager -->
+    <div class="clearfix">
+      <Pagination :pageLink="links" @prev="getPostList(links.previous)" @next="getPostList(links.next)">
+      </Pagination>
     </div>
   </div>
 </template>

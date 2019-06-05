@@ -52,7 +52,7 @@
     created() {
       this.$axios.get('blog/').then((resp) => {
         if (resp.status === 200) {
-          this.categoryList = resp.data
+          this.categoryList = resp.data.results
         } else {
           console.log('1')
         }

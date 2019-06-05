@@ -17,13 +17,12 @@
           </p>
         </div>
         <hr>
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">
-            Older Posts &rarr;
-          </a>
-        </div>
       </div>
+    </div>
+    <!-- Pager -->
+    <div class="clearfix">
+      <Pagination :pageLink="links" @prev="getPostList(links.previous)" @next="getPostList(links.next)">
+      </Pagination>
     </div>
   </div>
 </template>

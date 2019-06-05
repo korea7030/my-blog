@@ -17,21 +17,16 @@
           </div>
         </div>
         <div class="col-lg-8 col-md-10 mx-auto">
-          <VueMarkdown>
-            {{ postDetail.content }}
-          </VueMarkdown>
+          <div v-html="postDetail.content" />
         </div>
       </div>
     </div>
   </article>
 </template>
 <script>
-  import VueMarkdown from 'vue-markdown'
+  import Marked from 'marked'
 
   export default {
-    components: {
-      VueMarkdown
-    },
     data() {
       return {
         postDetail: {
@@ -51,6 +46,7 @@
       this.$axios.get(postDeatilUrl).then((resp) => {
         if (resp.status === 200) {
           this.postDetail = resp.data
+          this.postDetail.content = Marked(this.postDetail.content)
         } else {
           console.log('1')
         }
