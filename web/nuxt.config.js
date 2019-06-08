@@ -18,10 +18,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic'},
-      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'},
-    ],
-    css: [
-      { src: '~/node_modules/highlight.js/styles', lang: 'css' }
+      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'}
     ]
   },
 
@@ -42,7 +39,9 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [],
+  plugins: [
+    '~/plugins/disqus'
+  ],
 
   /*
   ** Axios module configuration
@@ -59,15 +58,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa',
     '@nuxtjs/axios', // axios add
-    '@nuxtjs/markdownit'
   ],
-
-  markdownit: {
-    injected: true,
-    use: [
-      'markdown-it-highlightjs'
-    ]
-  },
   /*
   ** Build configuration
   */

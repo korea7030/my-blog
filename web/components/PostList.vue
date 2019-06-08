@@ -5,7 +5,7 @@
         <div class="post-preview">
           <nuxt-link :to="{name: 'category-cid-post-id', params: {cid: post.category, id: post.id}}">
             <h2 class="post-title">
-              {{ post.title }}
+              [{{ post.category_name }}] {{ post.title }}
             </h2>
           </nuxt-link>
           <p class="post-meta">

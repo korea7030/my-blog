@@ -1,6 +1,6 @@
 <template>
   <!-- Page Header -->
-  <header class="masthead">
+  <header class="masthead" style="background-image: url('/home-bg.jpg')">
     <div class="overlay" />
     <div class="container">
       <div class="row">

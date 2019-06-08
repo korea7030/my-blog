@@ -1,23 +1,33 @@
 <template>
-  <div v-if="pageLink.count > 0" class="m-b-50">
-    <div class="pagination text-right">
-      <span class="pages">
-        {{ pageLink.start_index }}-{{ pageLink.end_index }}/{{ pageLink.count }}
-      </span>
-      <a v-if="pageLink.previous" class="btn btn-icon btn-default" @click="$emit('prev')">
-        <i class="ivu-icon ivu-icon-ios-arrow-back" />
-      </a>
-      <a v-else href="" class="btn btn-icon btn-default disabled" :disabled="!pageLink.previous">
-        <i class="ivu-icon ivu-icon-ios-arrow-back" />
-      </a>
-      <a v-if="pageLink.next" class="btn btn-icon btn-default" @click="$emit('next')">
-        <i class="ivu-icon ivu-icon-ios-arrow-forward" />
-      </a>
-      <a v-else href="" class="btn btn-icon btn-default disabled" :disabled="!pageLink.next">
-        <i class="ivu-icon ivu-icon-ios-arrow-forward" />
-      </a>
-    </div>
-  </div>
+  <nav v-if="pageLink.count > 0" aria-label="Page navigation example">
+    <ul class="pagination pg-blue justify-content-center">
+      <li class="page-item">
+        <a v-if="pageLink.previous" href="#" class="page-link" @click="$emit('prev')">
+          <span class="text-danger">
+            Prev
+          </span>
+        </a>
+        <a v-else class="page-link" :disabled="!pageLink.previous">
+          Prev
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link">
+          {{ pageLink.cur_page }}
+        </a>
+      </li>
+      <li class="page-item">
+        <a v-if="pageLink.next" href="#" class="page-link" @click="$emit('next')">
+          <span class="text-warning">
+            Next
+          </span>
+        </a>
+        <a v-else class="page-link" :disabled="!pageLink.next">
+          Next
+        </a>
+      </li>
+    </ul>
+  </nav>
 </template>
 <script>
   export default {

@@ -25,11 +25,14 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "highlight.js": "^9.15.8",
+    "kramed": "^0.5.6",
     "markdown-it-highlightjs": "^3.0.0",
     "marked": "^0.6.2",
     "nuxt": "^2.4.0",
     "vue-disqus": "^3.0.5",
     "vue-markdown": "^2.2.4",
+    "vuejs-paginate": "^2.1.0",
+    "vuejs-paginator": "^2.0.2",
     "webpack": "^4.30.0"
   },
   "devDependencies": {

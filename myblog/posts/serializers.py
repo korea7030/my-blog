@@ -17,6 +17,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class PostAllSerializer(serializers.ModelSerializer):
     category_name = serializers.SerializerMethodField()
     author_name = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
@@ -40,6 +41,9 @@ class PostAllSerializer(serializers.ModelSerializer):
 
         return author_name
 
+    def get_created_at(self, obj):
+        return obj.created_at.strftime('%Y-%m-%d')
+
 
 class PostCategorySerializer(serializers.ModelSerializer):
     """
@@ -60,10 +64,24 @@ class PostSerializer(serializers.ModelSerializer):
     blog post by category
     """
     category = PostCategorySerializer(many=False, read_only=True)
+    created_at = serializers.SerializerMethodField()
+    author_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = ('id', 'title', 'content', 'draft', 'created_at', 'updated_at', 'category')
+        fields = ('id', 'title', 'content', 'draft', 'created_at', 'updated_at', 'category', 'author_name')
+
+    def get_created_at(self, obj):
+        return obj.created_at.strftime('%Y-%m-%d')
+
+    def get_author_name(self, obj):
+        try:
+            User = get_user_model()
+            author_name = User.objects.get(pk=obj.author.pk).username
+        except (TypeError, ObjectDoesNotExist):
+            author_name = ''
+
+        return author_name
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
@@ -73,6 +91,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
 
     category = PostCategorySerializer(many=False, read_only=True)
     author_name = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
@@ -86,3 +105,6 @@ class PostDetailSerializer(serializers.ModelSerializer):
             author_name = ''
 
         return author_name
+
+    def get_created_at(self, obj):
+        return obj.created_at.strftime('%Y-%m-%d')

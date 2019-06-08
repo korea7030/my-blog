@@ -6,4 +6,4 @@ venv/*
 myblog/*/__pycache__/*
 static_cdn/*
 myblog/*/migrations/*
-myblog/myblog/__pycache__/settings.cpython-36.pyc
+../myblog/myblog/__pycache__/settings.cpython-36.pyc
