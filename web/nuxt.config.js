@@ -1,6 +1,6 @@
 import pkg from './package'
 
-const baseURL = (process.env.NODE_ENV !== 'production') ? 'http://localhost:8000/' : '/'
+const baseURL = (process.env.NODE_ENV !== 'production') ? 'http://localhost:8000/' : 'http://www.jhdevblog.com:8000/'
 
 export default {
   mode: 'universal',
