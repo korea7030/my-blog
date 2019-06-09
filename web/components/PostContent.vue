@@ -17,9 +17,7 @@
           </div>
         </div>
         <hr>
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div v-html="postDetail.content" />
-        </div>
+        <div class="col-lg-8 col-md-10 mx-auto" v-html="postDetail.content" />
       </div>
     </div>
     <div class="comments">
