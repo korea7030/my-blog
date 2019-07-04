@@ -41,6 +41,7 @@ class Post(AbstractCreateUpdateModel):
     title = models.CharField(max_length=120)
     content = MarkdownxField()
     draft = models.BooleanField(default=False)
+    read_count = models.IntegerField(default=0)
     # read_time = models.TimeField(null=True, blank=True)
 
     class Meta:

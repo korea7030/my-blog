@@ -13,7 +13,8 @@
               <a href="https://www.facebook.com/jaehyun.lee.37" target="_blank">
                 {{ postDetail.author_name }}
               </a>
-              on {{ postDetail.created_at }}</span>
+              on {{ postDetail.created_at }} | </span>
+              <span style="float:right;">{{ postDetail.read_count }} Views</span>
           </div>
         </div>
         <hr>
@@ -39,7 +40,8 @@
           created_at: null,
           draft: true,
           author_name: null,
-          author: null
+          author: null,
+          read_count: 0
         }
       }
     },

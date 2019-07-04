@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 from .models import PostCategory, Post
 from .serializers import (CategorySerializer,
@@ -64,6 +65,14 @@ class PostDetail(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
     permission_classes = (AllowAny,)
+
+    def get(self, request, *args, **kwargs):
+        post = self.get_object()
+        serializer = self.get_serializer(post)
+        post.read_count += 1
+        post.save()
+
+        return Response(serializer.data)
 
     def get_serializer(self, *args, **kwargs):
         """
