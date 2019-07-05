@@ -20,22 +20,19 @@ services: # 서비스 정의
       - "5432"
     networks:
       - nginx_network
-      - db_network
     tty: true
-    depends_on:
-      - db
-  db:
-    restart: always
-    build:
-      context: ./config/postgresql
-      dockerfile: Dockerfile
-    container_name: blogdb01
-    ports:
-      - 5432:5432
-    env_file:
-      - ./config/postgresql/db.env
-    networks:
-      - db_network
+#  db:
+#    restart: always
+#    build:
+#      context: ./config/postgresql
+#      dockerfile: Dockerfile
+#    container_name: blogdb01
+#    ports:
+#      - 5432:5432
+#    env_file:
+#      - ./config/postgresql/db.env
+#    networks:
+#      - db_network
   nginx:
     restart: always
     build:
@@ -61,6 +58,4 @@ services: # 서비스 정의
 
 networks:
   nginx_network:
-    driver: bridge
-  db_network:
     driver: bridge
