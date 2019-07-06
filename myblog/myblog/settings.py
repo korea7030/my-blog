@@ -160,6 +160,8 @@ AWS_SECRET_ACCESS_KEY = env_variable['AWS_SECRET_ACCESS_KEY']
 S3_URL = 'http://%s.s3.ap-northeast-2.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_DEFAULT_ACL = None
 
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
 STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'common.utils.StaticStorage'
 
