@@ -41,16 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'markdown_deux',
     'rest_framework',
-    'corsheaders', # cors header
+    'corsheaders',  # cors header
     'markdownx',
     'common',
     'posts',
+    'storages'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware', # cors header middleware
+    'corsheaders.middleware.CorsMiddleware',  # cors header middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -143,16 +144,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+#
+# STATICFILES_DIR = [
+#     os.path.join(BASE_DIR, "static")
+# ]
+#
+# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+#
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, "static")
-]
+AWS_STORAGE_BUCKET_NAME = env_variable['AWS_BUCKET_NAME']
+AWS_ACCESS_KEY_ID = env_variable['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = env_variable['AWS_SECRET_ACCESS_KEY']
+S3_URL = 'http://%s.s3.ap-northeast-2.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_DEFAULT_ACL = None
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'common.utils.StaticStorage'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'common.utils.MediaStorage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 MARKDOWNX_MARKDOWN_EXTENSIONS = [
     'tables'

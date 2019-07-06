@@ -5,6 +5,5 @@ web/.nuxt
 venv/*
 static_cdn/*
 myblog/*/migrations/*
-/my-blog/myblog/*/__pycache__/*
-/my-blog/myblog/*/migrations/*
-/my-blog/config/postgresql/*
+myblog/*/*/__pycache__/*
+myblog/*/*/migrations/*
