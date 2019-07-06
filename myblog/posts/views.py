@@ -20,7 +20,7 @@ class PostCategoryList(generics.ListAPIView):
 
 
 class PostAllList(generics.ListAPIView):
-    queryset = Post.objects.all().order_by('-created_at')
+    queryset = Post.objects.filter(draft=True).order_by('-created_at')
     serializer_class = PostAllSerializer
     permission_classes = (AllowAny,)
 
@@ -31,7 +31,7 @@ class PostList(generics.ListAPIView):
     notice: if pass a queryset to serializer, many=True
             if pass a single model object(use get), many=False)
     """
-    queryset = Post.objects.all().order_by('-created_at')
+    queryset = Post.objects.filter(draft=True).order_by('-created_at')
     serializer_class = PostSerializer
     permission_classes = (AllowAny,)
 
@@ -62,7 +62,7 @@ class PostList(generics.ListAPIView):
 
 class PostDetail(generics.RetrieveAPIView):
     lookup_field = "id"
-    queryset = Post.objects.all()
+    queryset = Post.objects.filter(draft=True)
     serializer_class = PostDetailSerializer
     permission_classes = (AllowAny,)
 
