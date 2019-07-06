@@ -14,7 +14,9 @@
                 {{ postDetail.author_name }}
               </a>
               on {{ postDetail.created_at }} | </span>
-              <span style="float:right;">{{ postDetail.read_count }} Views</span>
+            <span style="float:right;">
+              {{ postDetail.read_count }} Views
+            </span>
           </div>
         </div>
         <hr>
@@ -56,7 +58,7 @@
     created() {
       console.log(this.$route.params.cid)
       console.log(this.$route.params.id)
-      const postDeatilUrl = 'blog/category/1/post/2'.replace('1', this.$route.params.cid).replace('2', this.$route.params.id)
+      const postDeatilUrl = 'blog/category/c1/post/p1'.replace('c1', this.$route.params.cid).replace('p1', this.$route.params.id)
       this.$axios.get(postDeatilUrl).then((resp) => {
         if (resp.status === 200) {
           this.postDetail = resp.data
@@ -64,12 +66,26 @@
             renderer: new kramed.Renderer(),
             gfm: true,
             tables: true,
-            breaks: false,
-            pedantic: false,
+            breaks: true,
+            pedantic: true,
             sanitize: true,
             smartLists: true,
-            smartypants: false
+            smartypants: true
           })
+          kramed.defaults = {
+            // Lexer options (both block and inline lexers)
+            gfm: true,
+            tables: true,
+            mathjax: true,
+
+            // Kramed options
+            highlight: true,
+
+            // Renderer options
+            langPrefix: 'lang-',
+            smartypants: true,
+            headerAutoId: true
+          }
           this.postDetail.content = kramed(this.postDetail.content)
         } else {
           console.log('error')
