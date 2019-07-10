@@ -9,7 +9,7 @@ ADD ./web /usr/src/app
 
 RUN npm i -g
 
-RUN npm install
+RUN npm install -g
 RUN npm run build
 
 ENV HOST 0.0.0.0
