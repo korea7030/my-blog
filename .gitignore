@@ -5,5 +5,4 @@ web/.nuxt
 venv/*
 static_cdn/*
 myblog/*/migrations/*
-myblog/*/*/__pycache__/*
-myblog/*/*/migrations/*
+myblog/*/__pycache__/*

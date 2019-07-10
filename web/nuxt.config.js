@@ -40,7 +40,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/disqus'
+    '~plugins/disqus',
+    { src: '~plugins/ga.js', ssr: false }
   ],
 
   /*
