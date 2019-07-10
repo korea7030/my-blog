@@ -1,4 +1,4 @@
-import router from '~router'
+import router from '@nuxtjs/router'
 /*
 ** 클라이언트 사이드와 프로덕션 모드에서만 실행됩니다
 */

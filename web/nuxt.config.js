@@ -41,7 +41,6 @@ export default {
   */
   plugins: [
     '~plugins/disqus',
-    { src: '~plugins/ga.js', ssr: false }
   ],
 
   /*
@@ -59,6 +58,9 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa',
     '@nuxtjs/axios', // axios add
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-65871545-2'
+    }]
   ],
   /*
   ** Build configuration
