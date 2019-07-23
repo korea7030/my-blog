@@ -20,7 +20,7 @@
           </div>
         </div>
         <hr>
-        <div class="col-lg-8 col-md-10 mx-auto" v-html="postDetail.content" />
+        <div class="markdown-body" v-html="$md.render(postDetail.content)" />
       </div>
     </div>
     <div class="comments">
@@ -29,15 +29,16 @@
   </article>
 </template>
 <script>
-  import kramed from 'kramed'
+  // import marked from 'marked'
 
   export default {
+    layout: 'blog',
     data() {
       return {
         postDetail: {
           id: null,
           title: null,
-          content: null,
+          content: '',
           category: null,
           created_at: null,
           draft: true,
@@ -56,37 +57,11 @@
       }
     },
     created() {
-      console.log(this.$route.params.cid)
-      console.log(this.$route.params.id)
       const postDeatilUrl = 'blog/category/c1/post/p1'.replace('c1', this.$route.params.cid).replace('p1', this.$route.params.id)
       this.$axios.get(postDeatilUrl).then((resp) => {
         if (resp.status === 200) {
           this.postDetail = resp.data
-          kramed.setOptions({
-            renderer: new kramed.Renderer(),
-            gfm: true,
-            tables: true,
-            breaks: true,
-            pedantic: true,
-            sanitize: true,
-            smartLists: true,
-            smartypants: true
-          })
-          kramed.defaults = {
-            // Lexer options (both block and inline lexers)
-            gfm: true,
-            tables: true,
-            mathjax: true,
-
-            // Kramed options
-            highlight: true,
-
-            // Renderer options
-            langPrefix: 'lang-',
-            smartypants: true,
-            headerAutoId: true
-          }
-          this.postDetail.content = kramed(this.postDetail.content)
+          // this.postDetail.content = marked(this.postDetail.content)
         } else {
           console.log('error')
         }
@@ -94,3 +69,20 @@
     }
   }
 </script>
+<style>
+  @import "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.css";
+
+  .markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px;
+  }
+
+  @media (max-width: 767px) {
+    .markdown-body {
+      padding: 15px;
+    }
+  }
+</style>

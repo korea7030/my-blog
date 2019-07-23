@@ -31,6 +31,7 @@ export default {
   ** Global CSS
   */
   css: [
+    { src: '~/node_modules/highlight.js/styles/atom-one-dark.css', lang: 'css' },
     '~assets/vendor/bootstrap/css/bootstrap.css',
     '~assets/vendor/fontawesome-free/css/all.css',
     '~assets/css/main.css'
@@ -58,10 +59,20 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa',
     '@nuxtjs/axios', // axios add
+    '@nuxtjs/markdownit',
     ['@nuxtjs/google-analytics', {
       id: 'UA-65871545-2'
     }]
   ],
+  markdownit: {
+    injected: true,
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    use: [
+      'markdown-it-highlightjs'
+    ]
+  },
   /*
   ** Build configuration
   */

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from markdownx.admin import MarkdownxModelAdmin
 from posts.models import PostCategory, Post
 
 
@@ -6,7 +7,7 @@ class PostCategoryAdmin(admin.ModelAdmin):
     list_display = ['category_name', 'category_desc', 'author', 'category_link']
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(MarkdownxModelAdmin):
     list_display = ['category', 'title', 'content', 'draft', 'created_at', 'updated_at']
     # link anchor show
     list_display_links = ['category', 'title']
