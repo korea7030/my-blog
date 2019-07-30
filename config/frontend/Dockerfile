@@ -8,11 +8,13 @@ RUN apk update && apk upgrade && apk add git
 ADD ./web /usr/src/app
 
 RUN npm i -g
-
-RUN npm install -g
-RUN npm run build
+RUN rm -f package-lock.json
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
 
-RUN npm run start
+RUN npm install
+RUN npm run build
+
+CMD ["npm", "start"]
+
