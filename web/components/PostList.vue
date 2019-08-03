@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div v-for="post in PostList" id="my-table" :key="post.id" class="col-lg-8 col-md-10 mx-auto">
+      <div v-for="post in pList" id="my-table" :key="post.id" class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
           <nuxt-link :to="{name: 'category-cid-post-id', params: {cid: post.category, id: post.id}}">
             <h2 class="post-title">
@@ -33,23 +33,25 @@
     components: {
       Pagination
     },
-    data() {
-      return {
-        querypage: 1,
-        PostList: null,
-        links: {
-          previous: null,
-          next: null,
-          count: null,
-          start_index: null,
-          end_index: null,
-          cur_page: null,
-          per_page: null
-        }
+    props: {
+      postList: {
+        type: Array,
+        required: true
+      },
+      links: {
+        type: Object,
+        required: true
       }
     },
-    created() {
-      this.getPostList(this.querypage)
+    data() {
+      return {
+        querypage: 1
+      }
+    },
+    computed: {
+      pList: function () {
+        return this.postList
+      }
     },
     methods: {
       getPostList(page) {
@@ -57,7 +59,7 @@
                         { params: { page: page }
                         }).then((resp) => {
           if (resp.status === 200) {
-            this.PostList = resp.data.results
+            this.postList = resp.data.results
             this.links = resp.data.links
             this.querypage = page
           } else {

@@ -29,23 +29,11 @@
   </article>
 </template>
 <script>
-  // import marked from 'marked'
-
   export default {
-    layout: 'blog',
-    data() {
-      return {
-        postDetail: {
-          id: null,
-          title: null,
-          content: '',
-          category: null,
-          created_at: null,
-          draft: true,
-          author_name: null,
-          author: null,
-          read_count: 0
-        }
+    props: {
+      postDetail: {
+        type: Object,
+        required: true
       }
     },
     computed: {
@@ -55,17 +43,6 @@
       disqusId() {
         return 'p' + this.postDetail.category + this.postDetail.id
       }
-    },
-    created() {
-      const postDeatilUrl = 'blog/category/c1/post/p1'.replace('c1', this.$route.params.cid).replace('p1', this.$route.params.id)
-      this.$axios.get(postDeatilUrl).then((resp) => {
-        if (resp.status === 200) {
-          this.postDetail = resp.data
-          // this.postDetail.content = marked(this.postDetail.content)
-        } else {
-          console.log('error')
-        }
-      })
     }
   }
 </script>

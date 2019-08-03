@@ -42,18 +42,16 @@ export default {
   */
   plugins: [
     '~plugins/disqus',
+    // '~/plugins/axios',
   ],
 
   /*
   ** Axios module configuration
   */
-  axios: {
-    baseURL: baseURL,
-    proxyHeaders: false
-  },
   /*
   ** Nuxt.js modules
   */
+
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
@@ -64,6 +62,9 @@ export default {
       id: 'UA-65871545-2'
     }]
   ],
+  axios: {
+    baseURL: baseURL, ssr: false
+  },
   markdownit: {
     injected: true,
     preset: 'default',
