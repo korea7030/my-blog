@@ -14,7 +14,9 @@ ENV HOST 0.0.0.0
 EXPOSE 3000
 
 RUN npm install
+ARG APP_NODE_ENV=production
+ENV NODE_ENV ${NODE_ENV}
 RUN npm run build
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
 
