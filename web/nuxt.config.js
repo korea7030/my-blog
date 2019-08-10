@@ -60,10 +60,29 @@ export default {
     '@nuxtjs/markdownit',
     ['@nuxtjs/google-analytics', {
       id: 'UA-65871545-2'
-    }]
+    }],
+    'nuxt-seo',
+    '@nuxtjs/sitemap'
   ],
+  seo: {
+    title: "JH DEV Blog"
+  },
   axios: {
     baseURL: baseURL, ssr: false
+  },
+  sitemap: {
+    hostname: 'http://www.jhdevblog.com',
+    gzip: true,
+    exclude: [
+      '/admin/**',
+      ':8000/admin/**'
+    ],
+    filter ({ routes }) {
+      return routes.map(route => {
+        route.url = `${route.url}/`
+        return route
+      })
+    }
   },
   markdownit: {
     injected: true,
