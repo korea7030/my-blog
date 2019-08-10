@@ -1,14 +1,12 @@
 {
-  "name": "web",
-  "version": "1.0.0",
-  "description": "blog frontend",
   "author": "jaehyunlee",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "postinstall": "node -e \"try { require('./scripts/postinstall') } catch (_) {}\""
   },
   "dependencies": {
     "@nuxt/webpack": "^2.8.1",
