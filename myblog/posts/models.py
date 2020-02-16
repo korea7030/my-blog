@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from markdownx.models import MarkdownxField
 from django.utils.safestring import mark_safe
 from markdown_deux import markdown
@@ -20,7 +20,7 @@ class PostCategory(AbstractCreateUpdateModel):
     """
     category information (deeplearning, blockchain...)
     """
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL)
     category_name = models.CharField(max_length=120)
     category_desc = models.CharField(max_length=1000)
     category_link = models.CharField(max_length=100)
@@ -37,7 +37,7 @@ class Post(AbstractCreateUpdateModel):
     blog post information
     """
     category = models.ForeignKey(PostCategory, on_delete=models.CASCADE, related_name='post_category')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL)
     title = models.CharField(max_length=120)
     content = MarkdownxField()
     draft = models.BooleanField(default=False)

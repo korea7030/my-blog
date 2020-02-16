@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.template.defaultfilters import truncatechars
 from markdownx.admin import MarkdownxModelAdmin
 from posts.models import PostCategory, Post
 
@@ -8,7 +9,7 @@ class PostCategoryAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(MarkdownxModelAdmin):
-    list_display = ['category', 'title', 'content', 'draft', 'created_at', 'updated_at']
+    list_display = ['category', 'title', 'get_content', 'draft', 'created_at', 'updated_at']
     # link anchor show
     list_display_links = ['category', 'title']
     # filter
@@ -16,6 +17,11 @@ class PostAdmin(MarkdownxModelAdmin):
     # search word
     search_fields = ['category', 'title', 'content']
 
+
+    def get_content(self, obj):
+        return truncatechars(obj.content, 100)
+
+    get_content.short_description = 'content'
 
 # Register your models here.
 admin.site.register(PostCategory, PostCategoryAdmin)

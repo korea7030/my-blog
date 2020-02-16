@@ -1,4 +1,4 @@
-"""myblog URL Configuration
+"""myblog URL ConfigurationCustomIndexDashboard
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -19,8 +19,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')), # Django JET dashboard URLS
+    # url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    # url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')), # Django JET dashboard URLS
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('posts.urls')),  # post url
     url(r'^markdownx/', include('markdownx.urls')),  # markdown url

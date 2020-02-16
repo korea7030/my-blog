@@ -77,11 +77,8 @@ export default {
       '/admin/**',
       ':8000/admin/**'
     ],
-    filter ({ routes }) {
-      return routes.map(route => {
-        route.url = `${route.url}/`
-        return route
-      })
+    routes() {
+      return axios.get('http://www.jhdevblog.com/category').then(res => res.data.map(category => '/category/' + category.id))
     }
   },
   markdownit: {

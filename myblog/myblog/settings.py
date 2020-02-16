@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-from django.conf import global_settings
 
 import os
 
@@ -25,15 +24,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOW_CREDENTIALS = False
-
 # Application definition
 
 INSTALLED_APPS = [
-    'jet.dashboard',
-    'jet',
+    # 'jet',
+    # 'jet.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,15 +45,19 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # cors header middleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  # cors header middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'myblog.urls'
 
@@ -79,6 +78,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myblog.wsgi.application'
+
+# JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+# JET_APP_INDEX_DASHBOARD = 'dashboard.CustomAppIndexDashboard'
+#
+# JET_MODULE_GOOGLE_ANALYTICS_CLIENT_SECRETS_FILE = os.path.join(BASE_DIR, 'client_id.json')
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -160,6 +164,9 @@ AWS_ACCESS_KEY_ID = env_variable['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = env_variable['AWS_SECRET_ACCESS_KEY']
 S3_URL = 'http://%s.s3.ap-northeast-2.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_DEFAULT_ACL = None
+AWS_HEADERS = {
+    'Access-Control-Allow-Origin': '*'
+}
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'

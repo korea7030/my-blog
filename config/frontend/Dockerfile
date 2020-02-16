@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 
 ADD ./web /usr/src/app
 
-RUN npm i -g
 RUN npm install
 RUN npm run build
 
