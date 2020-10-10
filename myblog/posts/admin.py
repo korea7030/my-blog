@@ -1,14 +1,16 @@
+from django.db import models
 from django.contrib import admin
 from django.template.defaultfilters import truncatechars
 from markdownx.admin import MarkdownxModelAdmin
 from posts.models import PostCategory, Post
+from martor.widgets import AdminMartorWidget
 
 
 class PostCategoryAdmin(admin.ModelAdmin):
     list_display = ['category_name', 'category_desc', 'author', 'category_link']
 
 
-class PostAdmin(MarkdownxModelAdmin):
+class PostAdmin(admin.ModelAdmin):
     list_display = ['category', 'title', 'get_content', 'draft', 'created_at', 'updated_at']
     # link anchor show
     list_display_links = ['category', 'title']

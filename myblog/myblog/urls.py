@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('posts.urls')),  # post url
     url(r'^markdownx/', include('markdownx.urls')),  # markdown url
+    url(r'^martor/', include('martor.urls'))
 ]
 
 # STATIC, MEDIA append

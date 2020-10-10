@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.urls import reverse
 from markdownx.models import MarkdownxField
+from martor.models import MartorField
 from django.utils.safestring import mark_safe
 from markdown_deux import markdown
 
@@ -20,7 +21,7 @@ class PostCategory(AbstractCreateUpdateModel):
     """
     category information (deeplearning, blockchain...)
     """
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     category_name = models.CharField(max_length=120)
     category_desc = models.CharField(max_length=1000)
     category_link = models.CharField(max_length=100)
@@ -37,9 +38,9 @@ class Post(AbstractCreateUpdateModel):
     blog post information
     """
     category = models.ForeignKey(PostCategory, on_delete=models.CASCADE, related_name='post_category')
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=120)
-    content = MarkdownxField()
+    content = MartorField()
     draft = models.BooleanField(default=False)
     read_count = models.IntegerField(default=0)
     # read_time = models.TimeField(null=True, blank=True)
